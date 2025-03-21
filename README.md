@@ -15,6 +15,7 @@
 
 
 🔧 安装 & 运行
+
 git clone https://github.com/yourusername/http-auth-bypass.git
 cd http-auth-bypass
 python3 http_fuzzer.py -u http://example.com/admin
@@ -22,9 +23,11 @@ python3 http_fuzzer.py -u http://example.com/admin
 
 📌 使用示例
 🔹 1. HTTP 头未授权访问测试
+
 bash
 复制
 编辑
+
 python3 http_fuzzer.py -u http://example.com/admin
 🔹 自动测试 JWT 认证绕过
 🔹 测试冷门 HTTP 头认证
