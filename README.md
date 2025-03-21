@@ -1,6 +1,9 @@
-🛡️ HTTP Header Auth Bypass & JWT Fuzzing Tool
+🛡️ UnauthCheck
+
 🚀 介绍
 这是一个用于 HTTP 头认证绕过 & JWT 渗透测试 的 Fuzzing 工具，能够快速检测 未授权访问漏洞，并支持 爆破模式。
+
+
 
 📌 支持功能：
 ✅ JWT 认证绕过 （无签名 JWT、伪造 Token、kid SQL 注入）
@@ -10,13 +13,13 @@
 ✅ 两种模式：默认 未授权测试，支持 爆破模式
 ✅ 无需额外依赖（不使用 PyJWT，手动构造 JWT）
 
+
 🔧 安装 & 运行
-bash
-复制
-编辑
 git clone https://github.com/yourusername/http-auth-bypass.git
 cd http-auth-bypass
 python3 http_fuzzer.py -u http://example.com/admin
+
+
 📌 使用示例
 🔹 1. HTTP 头未授权访问测试
 bash
@@ -27,6 +30,7 @@ python3 http_fuzzer.py -u http://example.com/admin
 🔹 测试冷门 HTTP 头认证
 🔹 测试 X-Forwarded-* 伪造绕过
 
+
 🔹 2. HTTP 认证爆破
 bash
 复制
@@ -35,7 +39,9 @@ python3 http_fuzzer.py -u http://example.com/login -m brute
 🔹 支持用户名 & 口令字典
 🔹 支持 Basic & Bearer 爆破
 
+
 🛠️ 参数
+
 参数	说明	默认值
 -u / --url	目标 URL	必填
 -m / --mode	模式 (unauthorized / brute)	unauthorized
