@@ -1,66 +1,55 @@
 🛡️ UnauthCheck
 
-🚀 介绍
-这是一个用于 HTTP 头认证绕过 & JWT 渗透测试 的 Fuzzing 工具，能够快速检测 未授权访问漏洞，并支持 爆破模式。
+一个用于测试 HTTP 头部未授权访问和 JWT 漏洞的 Python 工具，支持两种模式：
+
+unauthorized：模拟常见的认证绕过方式，检测未授权访问漏洞。
+
+brute：使用 header.txt 中的 HTTP 头部名称进行爆破测试,通过冷门http头进行绕过限制。
+
+🧰 功能特性
+支持伪造无签名的 JWT Token。
+
+支持 JWT kid 参数的 SQL 注入测试。
+
+支持常见的认证头部测试，如 Authorization、X-API-Key 等。
+
+支持自定义头部名称进行爆破测试。
+
+📦 安装方法
+确保已安装 Python 3。
+
+安装依赖库：
+
+pip install -r requirements.txt
+如果没有 requirements.txt 文件，请手动安装所需库：
+
+pip install requests
+🚀 使用说明
+未授权访问模式
+测试常见的认证绕过方式：
+
+python script.py -u http://example.com -m unauthorized
+爆破模式
+使用 header.txt 中的头部名称进行爆破测试：
 
 
-
-📌 支持功能：
-✅ JWT 认证绕过 （无签名 JWT、伪造 Token、kid SQL 注入）
-
-✅ 冷门 HTTP 头认证 （X-Auth-Token、X-API-Key、Proxy-Authorization 等）
-
-✅ HTTP 头大小写绕过 （authorization: Bearer null vs AUTHORIZATION: Bearer null）
-
-✅ 伪造 X-Forwarded-* 头 （X-Forwarded-For: 127.0.0.1、X-Original-URL: /admin）
-
-✅ 两种模式：默认 未授权测试，支持 爆破模式
-
-✅ 无需额外依赖（不使用 PyJWT，手动构造 JWT）
+python script.py -u http://example.com -m brute
+如果 header.txt 文件位于其他路径，可以使用 --header-file 参数指定：
 
 
+python script.py -u http://example.com -m brute --header-file /path/to/header.txt
+其他参数
+--method：指定 HTTP 请求方法，支持 GET、POST、PUT、DELETE，默认为 GET。
 
-🔧 安装 & 运行
+📄 示例
 
-git clone https://github.com/yourusername/http-auth-bypass.git
-cd http-auth-bypass
-python3 http_fuzzer.py -u http://example.com/admin
+python script.py -u http://localhost:8080/admin -m brute --method POST
+📝 header.txt 文件格式
+header.txt 文件应包含每行一个 HTTP 头部名称，例如：
 
-
-📌 使用示例
-🔹 1. HTTP 头未授权访问测试
-
-bash
-复制
-编辑
-
-python3 http_fuzzer.py -u http://example.com/admin
-🔹 自动测试 JWT 认证绕过
-
-🔹 测试冷门 HTTP 头认证
-
-🔹 测试 X-Forwarded-* 伪造绕过
-
-
-🔹 2. HTTP 认证爆破
-
-
-python3 http_fuzzer.py -u http://example.com/login -m brute
-
-🔹 支持用户名 & 口令字典
-
-🔹 支持 Basic & Bearer 爆破
-
-
-🛠️ 参数
-
-参数	说明	默认值
-
--u / --url	目标 URL	必填
-
--m / --mode	模式 (unauthorized / brute)	unauthorized
-
---method	HTTP 方法 (GET / POST / PUT / DELETE)	GET
+X-Custom-Header
+X-Test-Header
+Authorization
 
 📢 免责声明
 
